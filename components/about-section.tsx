@@ -11,12 +11,20 @@ export default function AboutSection() {
             Since the early rise of Artificial Intelligence into our daily
             lives, from intelligent machines in factories and autonomous robots
             to transformative applications like ChatGPT, I have always been
-            driven by one central question: How does this actually work? How can
-            a machine understand different human languages? How can a robot
-            perceive its environment and make decisions? How can mathematical
-            equations evolve into intelligence capable of solving real-world
-            problems?
+            driven by one central question:
           </p>
+
+          <div className="space-y-2 border-l-2 border-primary/40 pl-6 italic text-foreground/80">
+            <p>How does this actually work?</p>
+            <p>How can a machine understand different human languages?</p>
+            <p>
+              How can a robot perceive its environment and make decisions?
+            </p>
+            <p>
+              How can mathematical equations evolve into intelligence capable of
+              solving real-world problems?
+            </p>
+          </div>
 
           <p>
             What began as curiosity gradually transformed into a deep passion
