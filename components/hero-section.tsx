@@ -13,7 +13,7 @@ export default function HeroSection() {
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-start gap-10 px-6 pt-24">
         {/* Profile image at top */}
         <div className="flex shrink-0 items-center justify-start">
-          <div className="profile-glow relative h-44 w-44 overflow-hidden rounded-full border-2 border-primary/30 md:h-52 md:w-52 lg:h-60 lg:w-60">
+          <div className="profile-glow relative h-56 w-56 overflow-hidden rounded-full border-2 border-primary/30 md:h-72 md:w-72 lg:h-80 lg:w-80">
             <Image
               src="/images/profile.jpg"
               alt="Abdelrahman Mahmoud - AI and Machine Learning Engineer"
@@ -30,8 +30,9 @@ export default function HeroSection() {
         </p>
 
         {/* Quote - large bold headline */}
-        <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-          {'"Intelligence isn\'t coded, it\'s learned."'}
+        <h1 className="text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+          <span className="block">{"Intelligence isn't coded,"}</span>
+          <span className="block">{"it's learned."}</span>
         </h1>
 
         <div className="h-10 text-xl md:text-2xl">
