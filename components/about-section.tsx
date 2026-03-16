@@ -4,9 +4,10 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading title="About Me" />
+        <div className="flex flex-col items-center">
+          <SectionHeading title="About Me" />
 
-        <div className="max-w-3xl space-y-6 text-base leading-relaxed text-muted-foreground">
+          <div className="max-w-3xl space-y-6 text-base leading-relaxed text-muted-foreground">
           <p>
             Since the early rise of Artificial Intelligence into our daily
             lives, from intelligent machines in factories and autonomous robots
@@ -57,6 +58,7 @@ export default function AboutSection() {
             For me, Artificial Intelligence is not just a specialization. It is
             a continuous journey of curiosity, research, and innovation.
           </p>
+        </div>
         </div>
       </div>
     </section>
