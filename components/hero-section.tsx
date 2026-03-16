@@ -6,9 +6,9 @@ import Image from "next/image"
 
 const metrics = [
   { label: "AI Projects", value: 3, suffix: "+" },
-  { label: "AI Trainings", value: 3, suffix: "+" },
+  { label: "AI Trainings", value: 5, suffix: "+" },
   { label: "Years in AI Learning", value: 2, suffix: "+" },
-  { label: "GPA", value: 3.57, suffix: "", isDecimal: true },
+  { label: "Implemented Researches", value: 2, suffix: "+" },
 ]
 
 function AnimatedCounter({
