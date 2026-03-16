@@ -6,7 +6,7 @@ const titles = [
   "AI Systems Engineer",
   "Machine Learning Engineer",
   "Computer Vision Engineer",
-  "Deep Learning Researcher",
+  "AI Researcher",
   "Data Scientist",
 ]
 

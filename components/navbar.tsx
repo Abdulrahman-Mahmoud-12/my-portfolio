@@ -1,13 +1,15 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 
 const navLinks = [
   { label: "About", href: "#about" },
+  { label: "Education", href: "#education" },
   { label: "Skills", href: "#skills" },
+  { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ]
 
@@ -32,9 +34,15 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a
           href="#"
-          className="font-mono text-sm font-semibold tracking-wide text-foreground transition-colors hover:text-primary"
+          className="block transition-opacity hover:opacity-80"
         >
-          Abdelrahman Mahmoud Mohammed
+          <Image
+            src="/images/logo.png"
+            alt="Abdelrahman Mahmoud"
+            width={48}
+            height={32}
+            className="h-8 w-auto"
+          />
         </a>
 
         {/* Desktop nav */}

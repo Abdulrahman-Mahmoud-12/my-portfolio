@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import SectionHeading from "./section-heading"
 
 const contactItems = [
@@ -45,49 +48,148 @@ const contactItems = [
 ]
 
 export default function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  })
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle")
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus("sending")
+
+    // Using mailto as a direct send method
+    const mailtoLink = `mailto:abdelrahman.mahmoud12.ai@gmail.com?subject=${encodeURIComponent(
+      formData.subject
+    )}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    )}`
+
+    window.location.href = mailtoLink
+    setStatus("sent")
+    setFormData({ name: "", email: "", subject: "", message: "" })
+    
+    setTimeout(() => setStatus("idle"), 3000)
+  }
+
   return (
     <section id="contact" className="py-24">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading title="Contact" />
 
-        <div className="max-w-2xl">
-          <div className="grid gap-4 sm:grid-cols-2">
-            {contactItems.map((item) => {
-              const content = (
-                <div className="card-hover flex items-center gap-4 rounded-xl border border-border bg-card p-5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    {item.icon}
+        <div className="grid gap-12 lg:grid-cols-2">
+          {/* Contact Info */}
+          <div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {contactItems.map((item) => {
+                const content = (
+                  <div className="card-hover flex items-center gap-4 rounded-xl border border-border bg-card p-5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      {item.icon}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs text-muted-foreground">{item.label}</p>
+                      <p className="truncate text-sm font-medium text-foreground">
+                        {item.value}
+                      </p>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <p className="text-xs text-muted-foreground">{item.label}</p>
-                    <p className="truncate text-sm font-medium text-foreground">
-                      {item.value}
-                    </p>
-                  </div>
-                </div>
-              )
-
-              if (item.href) {
-                return (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target={item.href.startsWith("http") ? "_blank" : undefined}
-                    rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="block"
-                  >
-                    {content}
-                  </a>
                 )
-              }
 
-              return <div key={item.label}>{content}</div>
-            })}
+                if (item.href) {
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target={item.href.startsWith("http") ? "_blank" : undefined}
+                      rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="block"
+                    >
+                      {content}
+                    </a>
+                  )
+                }
+
+                return <div key={item.label}>{content}</div>
+              })}
+            </div>
+
+            <p className="mt-10 text-lg font-medium italic text-foreground/80">
+              {'"Let\'s build intelligent systems that create real impact."'}
+            </p>
           </div>
 
-          <p className="mt-12 text-lg font-medium text-foreground/80 italic">
-            {'"Let\'s build intelligent systems that create real impact."'}
-          </p>
+          {/* Contact Form */}
+          <div className="rounded-xl border border-border bg-card p-6">
+            <h3 className="mb-6 text-lg font-semibold text-foreground">Send a Message</h3>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="mb-1.5 block text-sm text-muted-foreground">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  placeholder="Your full name"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="mb-1.5 block text-sm text-muted-foreground">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  placeholder="your@email.com"
+                />
+              </div>
+              <div>
+                <label htmlFor="subject" className="mb-1.5 block text-sm text-muted-foreground">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  required
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  placeholder="What is this about?"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="mb-1.5 block text-sm text-muted-foreground">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  required
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full resize-none rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                  placeholder="Your message..."
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all hover:opacity-90 disabled:opacity-50"
+              >
+                {status === "sending" ? "Opening mail client..." : status === "sent" ? "Mail client opened" : "Send Message"}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
